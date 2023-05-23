@@ -1,0 +1,50 @@
+.subtaskWrapper {
+    width: 680px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 0 0 8px 20px;
+    display: flex;
+    padding: 4px 10px 4px 10px;
+}
+
+.subtaskWrapper input {
+    font-size: 18px;
+    font-weight: 300;
+    color: #202020;
+}
+
+.subtaskWrapper.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    text-decoration: line-through;
+    transition: none;
+    transform: none;
+}
+
+.subtaskWrapper.raspberry {
+    border: 1.5px solid #ff3855;
+}
+
+.subtaskWrapper.teal {
+    border: 1.5px solid #008080;
+}
+
+.subtaskWrapper.sky {
+    border: 1.5px solid #87ceeb;
+}
+
+.subtaskWrapper.lime {
+    border: 1.5px solid #c2ff3d;
+}
+
+.subtaskWrapper.royal {
+    border: 1.5px solid #4821ac;
+}
+
+.subtaskWrapper.bubblegum {
+    border: 1.5px solid #f6a0c4;
+}
+
+.subtaskWrapper.amber {
+    border: 1.5px solid #ffbf87;
+}

@@ -1,0 +1,118 @@
+.add-subtask-icon {
+  opacity: 0;
+  max-height: 0;
+  transition: opacity .25s, max-height .25s ease-in-out;
+}
+
+.outerWrapper {
+  padding: 8px 0 8px 0;
+}
+
+.outerWrapper:hover .add-subtask-icon {
+  opacity: 1;
+  max-height: 50px;
+}
+
+.outerWrapper:last-child{
+  margin-bottom: 8px;
+}
+
+.taskWrapper {
+  width: 700px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 15px;
+  height: 30.5px;
+  margin-bottom: 8px;
+}
+
+.taskWrapper.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    text-decoration: line-through;
+    transition: none;
+    transform: none;
+}
+
+.taskWrapper.raspberry {
+  border: 2px solid #ff3855;
+  background-color: #fce8eb;
+  color: #404040;
+}
+
+.taskWrapper.raspberry input:focus {
+  border-bottom: 1px solid #ff3855;
+}
+
+.taskWrapper.teal {
+  border: 2px solid #008080;
+  background-color: #e7f9f9;
+  color: #2b2b2b;
+}
+
+.taskWrapper.teal input:focus {
+  border-bottom: 1px solid #008080;
+}
+
+.taskWrapper.sky {
+  border: 2px solid #87ceeb;
+  background-color: #f1faff;
+  color: #2d2d2d;
+}
+
+.taskWrapper.sky input:focus {
+  border-bottom: 1px solid #87ceeb;
+}
+
+.taskWrapper.lime {
+  border: 2px solid #c2ff3d;
+  background-color: #f7ffe7;
+  color: #454545;
+}
+
+.taskWrapper.lime input:focus {
+  border-bottom: 1px solid #c2ff3d;
+}
+
+.taskWrapper.royal {
+  border: 2px solid #4821ac;
+  background-color: #f2e9ff;
+  color: #3c3c3c;
+}
+
+.taskWrapper.royal input:focus {
+  border-bottom: 1px solid #4821ac;
+}
+
+.taskWrapper.bubblegum {
+  border: 2px solid #f6a0c4;
+  background-color: #fff5fa;
+  color: #3f3f3f;
+}
+
+.taskWrapper.bubblegum input:focus {
+  border-bottom: 1px solid #f6a0c4;
+}
+
+.taskWrapper.amber {
+  border: 2px solid #ffbf87;
+  background-color: #fff5e6;
+  color: #4d4d4d;
+}
+
+.taskWrapper.amber input:focus {
+  border-bottom: 1px solid #ffbf87;
+}
+
+.input {
+  background-color: inherit;
+  border: none;
+  font: inherit;
+  outline: none;
+  width: 100%;
+  text-align: center;
+}
+
+.subtask {
+  transition: display 2s;
+}

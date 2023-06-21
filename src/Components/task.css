@@ -27,11 +27,11 @@
 }
 
 .taskWrapper.disabled {
-    opacity: 0.5;
-    pointer-events: none;
-    text-decoration: line-through;
-    transition: none;
-    transform: none;
+  opacity: 0.5;
+  pointer-events: none;
+  text-decoration: line-through;
+  transition: none;
+  transform: none;
 }
 
 .taskWrapper.raspberry {

@@ -14,7 +14,7 @@ export const TrashCanIcon: React.FC<TrashCanIconProps> = ({onClick, width, heigh
         return;
     }
     return (
-        <div onClick={() => {clicked()}}>
+        <div style={{pointerEvents: "auto"}} onClick={() => {clicked()}}>
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                 width={width ?? 24} height={height ?? 24}
                 className="deleteIcon"

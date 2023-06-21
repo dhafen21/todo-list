@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { Control, useFieldArray, UseFieldArrayRemove, UseFormRegister, UseFormWatch } from "react-hook-form";
+import React, { useRef } from "react";
+import { Control, useFieldArray, UseFieldArrayRemove, UseFormReturn } from "react-hook-form";
 import { AddPlusCircle } from "../Assets/add-plus-circle";
 import { CheckIcon } from "../Assets/check-icon";
 import { PencilIcon } from "../Assets/pencil-icon";
@@ -10,16 +10,15 @@ import { InputComponent } from "./InputComponent";
 import { SubtaskComponent } from "./SubtaskComponent";
 
 interface TaskComponentProps {
-    register: UseFormRegister<TodoList>;
+    methods : UseFormReturn<TodoList>;
+    control: Control<TodoList, any>;
     index: number;
     id: string;
     removeTask: UseFieldArrayRemove;
-    watch: UseFormWatch<TodoList>;
-    control: Control<TodoList>;
     save: () => void;
 }
-export const TaskComponent: React.FC<TaskComponentProps> = ({register, index, id, watch, removeTask, control, save}) => {
-    const completed = watch(`list.${index}.completed`)
+export const TaskComponent: React.FC<TaskComponentProps> = ({methods, index, id, removeTask, save, control}) => {
+    const completed = methods.watch(`list.${index}.completed`)
     const {fields, append, remove} = useFieldArray({name: `list.${index}.subtasks`, control})
     const colors = ["raspberry", "sky", "lime", "royal", "teal", "bubblegum", "amber"];
     const inputRef = useRef<HTMLInputElement | null>(null);
@@ -28,6 +27,11 @@ export const TaskComponent: React.FC<TaskComponentProps> = ({register, index, id
     const deleteEntireTask = () => {
         remove();
         removeTask(index);
+        save();
+    }
+
+    const onCheck = () => {
+        methods.setValue(`list.${index}.completed`, !completed);
         save();
     }
         
@@ -40,13 +44,13 @@ export const TaskComponent: React.FC<TaskComponentProps> = ({register, index, id
             >
                 <div style={{display: "flex"}}>
                 <input 
-                    {...register(`list.${index}.completed`)}
                     type="checkbox" 
                     defaultChecked={completed} 
                     style={{pointerEvents:"auto"}}
+                    onChange={onCheck}
                     />
                 <InputComponent
-                    register={register}
+                    register={methods.register}
                     inputRef={inputRef}
                     fieldPath={`list.${index}.description`}
                     save={save}
@@ -61,11 +65,10 @@ export const TaskComponent: React.FC<TaskComponentProps> = ({register, index, id
             {fields.map((field, subtaskIndex) => {
                 return (
                     <SubtaskComponent 
-                        register={register}
+                        methods={methods}
                         theme={theme}
                         index={index}
                         subtaskIndex={subtaskIndex}
-                        watch={watch}
                         remove={remove}
                         key={field.id}
                         save={save}

@@ -11,8 +11,9 @@ function App() {
 
   let debounceTimer: NodeJS.Timeout;
 
-  const {control, handleSubmit, register, watch, setValue, getValues} = useForm<TodoList>();
-
+  // const {control, handleSubmit, register, watch, setValue, getValues} = useForm<TodoList>();
+  const methods = useForm<TodoList>();
+  const control = methods.control
   const {fields, append, remove} = useFieldArray({name: "list", control})
 
   const [display, setDisplay] = useState("none")
@@ -39,36 +40,34 @@ function App() {
   };
 
   const save = () => {
-    writeToStorage(getValues())
+    writeToStorage(methods.getValues())
   }
 
   useEffect(() => {
     chrome.storage.local.get('todo-list').then((data)=> {
-      setValue("list", data["todo-list"]["list"])
+      methods.setValue("list", data["todo-list"]["list"])
     })
-  }, [setValue]);
+  }, [methods.setValue]);
 
   const formRef = useRef<HTMLFormElement>(null)
   return (
     <div className="App">
       <header className="App-header">
-        <form ref={formRef} onSubmit={handleSubmit(submit)}>
+        <form ref={formRef} onSubmit={methods.handleSubmit(submit)}>
           <AddPlusCircle onClick={addNewTask}/> 
           {fields.map((field, index) => {
             return (
               <TaskComponent
+                methods={methods}
                 key={index}
-                register={register} 
                 index={index} 
                 id={field.id}
                 removeTask={remove}
-                watch={watch}
                 control={control}
                 save={save}
               />
             )
           })}
-          {/* <input type="submit"/> */}
         </form>
         <div className={`savedNotification ${display}`}>
           <img src={checkmark}/>
